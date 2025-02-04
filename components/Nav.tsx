@@ -1,10 +1,11 @@
 "use client";
-
+import {assets} from '../assets/assets'
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -43,8 +44,8 @@ const Navbar = () => {
         </button>
 
          {/* Sign Up Button */}
-         <a href="/signup" className="bg-neon text-white  dark:text-black px-4 py-2 rounded-lg hover:bg-purple dark:bg-text-black transition-colors duration-300">
-            Get Started
+         <a href="/signup" className="bg-neon text-white  dark:text-black px-4 py-2 rounded-lg hover:text-white hover:shadow-md hover:shadow-charcoal dark:hover:shadow-neon dark:bg-text-black transition-colors duration-300">
+            Get Started ➡
           </a>
 
         
@@ -85,13 +86,30 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          // onClick={'null'}
+          onClick={()=> setShowMobileMenu(true)}
           className="md:hidden text-gray-700 dark:text-gray-200 hover:text-indigo-800 dark:hover:text-white focus:outline-none transition-colors duration-300"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+
+              {/* ------------Mobile Menu----------------- */}
+      {showMobileMenu && (
+      <div className="fixed top-0 bottom-0 right-0 w-full overflow-hidden transition-transform ease-in-out bg-white dark:bg-charcoal duration-5000s md:hidden text-white dark:text-neon">
+        <div className='flex justify-end p-6 cursor-pointer'>
+          <Image src={assets.cross_icon} className='w-6 text-red-500 dark:border dark:border-neon rounded-sm dark:bg-neon' alt="close"  onClick={() => setShowMobileMenu(false)}/>
+        </div>
+        <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
+        <a onClick={() => setShowMobileMenu(false)} href="#Header" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Home</a>
+        <a onClick={() => setShowMobileMenu(false)} href="#About" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>About</a>
+        <a onClick={() => setShowMobileMenu(false)} href="#Service" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Service</a>
+        <a onClick={() => setShowMobileMenu(false)} href="#Contact" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Contact</a>
+        <a onClick={() => setShowMobileMenu(false)} href="" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Blog</a>
+        </ul>
+      </div>
+      )}
+
       </nav>
     </header>
   );
