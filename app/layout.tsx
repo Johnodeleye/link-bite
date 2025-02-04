@@ -3,6 +3,7 @@ import "./globals.css";
 import { Outfit, Open_Sans } from 'next/font/google';
 const inter = Outfit ({ subsets: ['latin'] })
 import Navbar from "@/components/Nav";
+import DarkModeToggle from "@/components/DarkModeToggle";
 
 export const metadata: Metadata = {
   title: "Create Next App",
