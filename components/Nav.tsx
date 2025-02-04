@@ -96,7 +96,7 @@ const Navbar = () => {
 
               {/* ------------Mobile Menu----------------- */}
       {showMobileMenu && (
-      <div className="fixed top-0 bottom-0 right-0 w-full overflow-hidden transition-transform ease-in-out bg-white dark:bg-charcoal duration-5000s md:hidden text-white dark:text-neon">
+      <div className="fixed top-0 bottom-0 right-0 w-full overflow-hidden transition-transform ease-in-out bg-white dark:bg-charcoal duration-5000s md:hidden text-white dark:text-neon z-50">
         <div className='flex justify-end p-6 cursor-pointer'>
           <Image src={assets.cross_icon} className='w-6 text-red-500 dark:border dark:border-neon rounded-sm dark:bg-neon' alt="close"  onClick={() => setShowMobileMenu(false)}/>
         </div>
