@@ -21,7 +21,7 @@ const Navbar = () => {
 
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-lg">
+    <header className="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 w-full z-50">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" onClick={toggleDarkMode} className="text-2xl font-bold text-indigo-800 dark:text-white transition-colors duration-300">
           <Image src='/logo.png' alt='logo' width={250} height={250} className="w-24 lg:w-fit " /> 

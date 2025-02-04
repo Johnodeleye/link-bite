@@ -6,15 +6,15 @@ const Hero = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        alert(`Shortening: ${link}`); // Replace this with actual API call
+        alert(`Shortening: ${link}`);
     };
 
     return (
         <div className="bg-white text-white dark:bg-black">
-            <section className="bg-animated cyber-grid py-20 lg:py-40 flex flex-col items-center justify-center p-4">
+            <section className="bg-animated cyber-grid py-40 lg:py-52 flex flex-col items-center justify-center p-4">
                 <div id="particles"></div>
                 <div className="text-center">
-                    <h1 className="text-6xl font-bold mb-4 text-neon dark:text-white neon-text dark:text-neon glitch-effect hover-3d" data-text="LINK-BITE">
+                    <h1 className="text-6xl font-bold mb-4 text-neon dark:text-white neon-text glitch-effect hover-3d" data-text="LINK-BITE">
                         LINK-BITE
                     </h1>
                     <p className="text-xl text-cyan-300 mb-8">
