@@ -2,7 +2,7 @@ import { BarChart, Bolt, Edit, QrCode, ShieldCheck, ThumbsUp } from "lucide-reac
 
 const Features = () => {
     return (
-        <div className="bg-white text-white dark:bg-black">
+        <div className="bg-white text-white dark:bg-black" id="Features">
             <section className="bg-animated cyber-grid py-10 lg:py-20 relative overflow-hidden">
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl font-bold text-center mb-12 neon-text glitch-effect text-neon dark:text-white" data-text="LINK-BITE FEATURES">

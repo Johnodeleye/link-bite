@@ -44,23 +44,29 @@ const Navbar = () => {
         </button>
 
          {/* Sign Up Button */}
-         <a href="/signup" className="bg-neon text-white  dark:text-black px-4 py-2 rounded-lg hover:text-white hover:shadow-md hover:shadow-charcoal dark:hover:shadow-neon dark:bg-text-black transition-colors duration-300">
+         <a href="/signup" className="bg-neon text-white  dark:text-black px-4 py-2 rounded-lg hover:text-white hover:shadow-md hover:shadow-charcoal dark:hover:shadow-neon dark:bg-text-black transition-colors duration-300 md:hidden">
             Get Started ➡
           </a>
 
         
 
-        <div className="hidden md:flex space-x-6">
-          {["Home", "About", "Services", "Contact"].map((item) => (
+          <div className="hidden md:flex space-x-6">
+          {[
+            { name: "Home", link: "/" },
+            { name: "Features", link: "#Features" },
+            { name: "Pricing", link: "#pricing" },
+            { name: "Testimony", link: "#Testimony" }
+          ].map(({ name, link }) => (
             <a
-              key={item}
-              href="#"
+              key={name}
+              href={link}
               className="nav-link text-gray-700 dark:text-gray-200 hover:text-indigo-800 dark:hover:text-white transition-colors duration-300"
             >
-              {item}
+              {name}
             </a>
           ))}
         </div>
+
 
         <div className="hidden md:flex items-center space-x-4">
           {/* Dark Mode Toggle (desktop) */}
@@ -101,10 +107,10 @@ const Navbar = () => {
           <Image src={assets.cross_icon} className='w-6 text-red-500 dark:border dark:border-neon rounded-sm dark:bg-neon' alt="close"  onClick={() => setShowMobileMenu(false)}/>
         </div>
         <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
-        <a onClick={() => setShowMobileMenu(false)} href="#Header" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Home</a>
-        <a onClick={() => setShowMobileMenu(false)} href="#About" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>About</a>
-        <a onClick={() => setShowMobileMenu(false)} href="#Service" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Service</a>
-        <a onClick={() => setShowMobileMenu(false)} href="#Contact" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Contact</a>
+        <a onClick={() => setShowMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Home</a>
+        <a onClick={() => setShowMobileMenu(false)} href="#Features" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Features</a>
+        <a onClick={() => setShowMobileMenu(false)} href="#Pricing" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Pricing</a>
+        <a onClick={() => setShowMobileMenu(false)} href="#Testimony" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Testimony</a>
         <a onClick={() => setShowMobileMenu(false)} href="" className='inline-block px-4 py-2 rounded-full cursor-pointer  hover:text-neon hover:shadow-sm hover:shadow-neon text-charcoal dark:text-neon'>Blog</a>
         </ul>
       </div>
