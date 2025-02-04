@@ -42,6 +42,13 @@ const Navbar = () => {
           )}
         </button>
 
+         {/* Sign Up Button */}
+         <a href="/signup" className="bg-neon text-white px-4 py-2 rounded-lg hover:bg-purple dark:bg-text-black transition-colors duration-300">
+            Get Started
+          </a>
+
+        
+
         <div className="hidden md:flex space-x-6">
           {["Home", "About", "Services", "Contact"].map((item) => (
             <a
