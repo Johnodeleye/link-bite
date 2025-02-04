@@ -11,7 +11,7 @@ const Hero = () => {
 
     return (
         <div className="bg-white text-white dark:bg-black">
-            <section className="bg-animated cyber-grid pt-44 pb-44 flex flex-col items-center justify-center p-4">
+            <section className="bg-animated cyber-grid py-20 lg:py-40 flex flex-col items-center justify-center p-4">
                 <div id="particles"></div>
                 <div className="text-center">
                     <h1 className="text-6xl font-bold mb-4 text-neon neon-text dark:text-neon glitch-effect hover-3d" data-text="LINK-BITE">
