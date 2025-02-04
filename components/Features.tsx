@@ -5,7 +5,7 @@ const Features = () => {
         <div className="bg-white text-white dark:bg-black">
             <section className="bg-animated cyber-grid py-10 lg:py-32 relative overflow-hidden">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-bold text-center mb-12 neon-text glitch-effect" data-text="LINK-BITE FEATURES">
+                    <h2 className="text-4xl font-bold text-center mb-12 neon-text glitch-effect text-neon dark:text-white" data-text="LINK-BITE FEATURES">
                         LINK-BITE FEATURES
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -60,7 +60,7 @@ const Features = () => {
                             <ThumbsUp className="w-10 h-10 text-cyan-400" />
                             </div>
                             <h3 className="text-2xl font-bold mb-2">100% Free & User-Friendly</h3>
-                            <p className="text-gray-300">No sign-ups required—just shorten, share, and track your links.</p>
+                            <p className="text-gray-300">sign-ups required—just shorten, share, and track your links.</p>
                         </div>
                     </div>
                 </div>
