@@ -5,7 +5,7 @@ const page = () => {
     <div className="grid gap-8">
       <div
         id="back-div"
-        className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-[26px] m-4"
+        className="bg-gradient-to-r from-cyan-400 to-neon rounded-[26px] m-4"
       >
         <div
           className="border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2"
@@ -15,20 +15,20 @@ const page = () => {
           </h1>
           <form action="#" method="post" className="space-y-4">
             <div>
-              <label for="email" className="mb-2  dark:text-gray-400 text-lg">Email</label>
+              <label htmlFor="email" className="mb-2  dark:text-gray-400 text-lg">Email</label>
               <input
                 id="email"
-                className="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                className="border p-3 dark:bg-neon dark:text-black  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full dark:placeholder:text-gray-700"
                 type="email"
                 placeholder="Email"
                 required
               />
             </div>
             <div>
-              <label for="password" className="mb-2 dark:text-gray-400 text-lg">Password</label>
+              <label htmlFor="password" className="mb-2 dark:text-gray-400 text-lg">Password</label>
               <input
                 id="password"
-                className="border p-3 shadow-md dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                className="border p-3 shadow-md dark:bg-neon dark:text-black dark:border-gray-700 placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full dark:placeholder:text-gray-700"
                 type="password"
                 placeholder="Password"
                 required
@@ -39,13 +39,13 @@ const page = () => {
               href="#"
             >
               <span
-                className="bg-left-bottom bg-gradient-to-r text-sm from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
+                className="bg-left-bottom bg-gradient-to-r text-sm from-neon to-neon bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
               >
                 Forget your password?
               </span>
             </a>
             <button
-              className="bg-gradient-to-r dark:text-gray-300 from-blue-500 to-purple-500 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out"
+              className="bg-gradient-to-r dark:text-gray-300 from-cyan-400 to-neon shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-neon hover:to-blue-500 transition duration-300 ease-in-out"
               type="submit"
             >
               LOG IN
@@ -56,23 +56,22 @@ const page = () => {
               Don't have an account?
               <a
                 className="group text-blue-400 transition-all duration-100 ease-in-out"
-                href="#"
+                href="/register"
               >
                 <span
-                  className="bg-left-bottom bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
+                  className="bg-left-bottom bg-gradient-to-r from-cyan-400 to-neon bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
                 >
                   Sign Up
                 </span>
               </a>
             </h3>
           </div>
-          <!-- Third Party Authentication Options -->
+          {/* <!-- Third Party Authentication Options --> */}
           <div
             id="third-party-auth"
             className="flex items-center justify-center mt-5 flex-wrap"
           >
             <button
-              href="#"
               className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
             >
               <img
@@ -82,7 +81,6 @@ const page = () => {
               />
             </button>
             <button
-              href="#"
               className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
             >
               <img
@@ -92,7 +90,6 @@ const page = () => {
               />
             </button>
             <button
-              href="#"
               className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
             >
               <img
@@ -102,7 +99,6 @@ const page = () => {
               />
             </button>
             <button
-              href="#"
               className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
             >
               <img
@@ -112,7 +108,6 @@ const page = () => {
               />
             </button>
             <button
-              href="#"
               className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
             >
               <img
@@ -123,7 +118,6 @@ const page = () => {
             </button>
 
             <button
-              href="#"
               className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
             >
               <img

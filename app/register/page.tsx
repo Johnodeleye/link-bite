@@ -1,5 +1,73 @@
+'use client';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 const page = () => {
+    const [error, setError] = useState("");
+    const router = useRouter();
+    const { data: session, status: sessionStatus } = useSession();
+  
+    useEffect(() => {
+      if (sessionStatus === "authenticated") {
+        router.replace("/dashboard");
+      }
+    }, [sessionStatus, router]);
+  
+    const isValidEmail = (email: string) => {
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        return emailRegex.test(email);
+      };
+      
+    const handleSubmit = async (e: any) => {
+      e.preventDefault();
+      const firstName = e.target[0].value;
+      const lastName = e.target[1].value;
+      const email = e.target[2].value;
+      const password = e.target[2].value;
+  
+      if (!isValidEmail(email)) {
+        setError("Email is invalid");
+        return;
+      }
+  
+      if (!password || password.length < 8) {
+        setError("Password is invalid");
+        return;
+      }
+  
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password,
+          }),
+        });
+        if (res.status === 400) {
+          setError("This email is already registered");
+        }
+        if (res.status === 200) {
+          setError("");
+          router.push("/sign-in");
+        }
+      } catch (error) {
+        setError("Error, try again");
+        console.log(error);
+      }
+    };
+  
+    if (sessionStatus === "loading") {
+      return <h1>Loading...</h1>;
+    }
+    
     return (
+        sessionStatus !== "authenticated" && (
         <div
         className="flex font-poppins items-center justify-center dark:bg-gray-900 min-w-screen min-h-screen py-28"
       >
@@ -14,7 +82,7 @@ const page = () => {
               <h1 className="pt-8 pb-6 font-bold text-5xl dark:text-gray-400 text-center cursor-default">
                 Sign Up
               </h1>
-              <form action="#" method="post" className="space-y-4">
+              <form onSubmit={handleSubmit} method="post" className="space-y-4">
                 <div>
                   <label htmlFor="text" className="mb-2 dark:text-gray-400 text-lg">First Name</label>
                   <input
@@ -66,13 +134,14 @@ const page = () => {
                 >
                   SIGN UP
                 </button>
+                <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
               </form>
               <div className="flex flex-col mt-4 items-center justify-center text-sm">
                 <h3>
                   <span className="cursor-default dark:text-gray-300">Have an account?</span>
                   <a
                     className="group text-blue-400 transition-all duration-100 ease-in-out"
-                    href=''
+                    href='/sign-in'
                   >
                     <span
                       className="bg-left-bottom ml-1 bg-gradient-to-r from-neon to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
@@ -183,6 +252,7 @@ const page = () => {
         </div>
       </div>
     )
+)
 }
 
 export default page
