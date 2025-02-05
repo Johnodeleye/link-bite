@@ -1,4 +1,60 @@
+'use client';
+import { BadgeCheck, Vote, Waves } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
+import { redirect, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import React from "react";
+
 const page = () => {
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const { data: session, status: sessionStatus } = useSession();
+  const [result, setResult] = React.useState("");
+  const [isOnboarded, setIsOnboarded] = useState(false);
+
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = async (e: any) => {
+    setResult('Logging in....');
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    if (!isValidEmail(email)) {
+      setError("Email is invalid");
+      return;
+    }
+
+    if (!password || password.length < 8) {
+      setError("Password is invalid");
+      return;
+    }
+
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (res?.error) {
+      setError("Invalid email or password");
+    } else {
+      setError("");
+    }
+  };
+
+  if (sessionStatus === "loading") {
+    return <h1>LOADING...</h1>
+  }
+
+  if(session){
+    redirect('/')
+  }
+
+
     return (
 <div className="flex font-poppins items-center justify-center">
     <div className="h-screen w-screen flex justify-center items-center dark:bg-gray-900">
@@ -13,7 +69,7 @@ const page = () => {
           <h1 className="pt-8 pb-6 font-bold dark:text-gray-400 text-5xl text-center cursor-default">
             Log in
           </h1>
-          <form action="#" method="post" className="space-y-4">
+          <form onSubmit={handleSubmit} method="post" className="space-y-4">
             <div>
               <label htmlFor="email" className="mb-2  dark:text-gray-400 text-lg">Email</label>
               <input
@@ -50,6 +106,7 @@ const page = () => {
             >
               LOG IN
             </button>
+            <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
           </form>
           <div className="flex flex-col mt-4 items-center justify-center text-sm">
             <h3 className="dark:text-gray-300">
@@ -161,7 +218,8 @@ const page = () => {
       </div>
     </div>
   </div>
-    )
+    
+  )
 }
 
 export default page

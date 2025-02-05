@@ -1,73 +1,84 @@
 'use client';
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import React from "react";
 import { useEffect, useState } from "react";
 
 const page = () => {
-    const [error, setError] = useState("");
-    const router = useRouter();
-    const { data: session, status: sessionStatus } = useSession();
-  
-    useEffect(() => {
-      if (sessionStatus === "authenticated") {
-        router.replace("/dashboard");
-      }
-    }, [sessionStatus, router]);
-  
-    const isValidEmail = (email: string) => {
-        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        return emailRegex.test(email);
-      };
-      
-    const handleSubmit = async (e: any) => {
-      e.preventDefault();
-      const firstName = e.target[0].value;
-      const lastName = e.target[1].value;
-      const email = e.target[2].value;
-      const password = e.target[2].value;
-  
-      if (!isValidEmail(email)) {
-        setError("Email is invalid");
-        return;
-      }
-  
-      if (!password || password.length < 8) {
-        setError("Password is invalid");
-        return;
-      }
-  
-      try {
-        const res = await fetch("/api/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            password,
-          }),
-        });
-        if (res.status === 400) {
-          setError("This email is already registered");
-        }
-        if (res.status === 200) {
-          setError("");
-          router.push("/sign-in");
-        }
-      } catch (error) {
-        setError("Error, try again");
-        console.log(error);
-      }
-    };
-  
-    if (sessionStatus === "loading") {
-      return <h1>Loading...</h1>;
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const { data: session, status: sessionStatus } = useSession();
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = React.useState("");
+
+  // useEffect(() => {
+  //   if (sessionStatus === "authenticated") {
+  //     router.replace("/login");
+  //   }
+  // }, [sessionStatus, router]);
+
+  if(session){
+    redirect('/dashboard')
+  }
+
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
+  };
+  const handleSubmit = async (e: any) => {
+    setResult('Signing up....');
+    e.preventDefault();
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    
+    if (!name ) {
+      setError("Enter your name!");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      setError("Email is invalid");
+      return;
+    }
+
+    if (!password || password.length < 8) {
+      setError("Password is invalid");
+      return;
     }
     
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+      if (res.status === 400) {
+        setError("This email is already registered");
+      }
+      if (res.status === 200 || res.status === 201) {
+        setError("");
+        router.push("/login"); // Shouldn't this be "/dashboard" instead of "/login"?
+      }
+    } catch (error) {
+      setError("Error, try again");
+      console.log(error);
+    }
+  };
+
+  if (sessionStatus === "loading") {
+    return <h1>LOADING...</h1>;
+  }
+
+    
     return (
-        sessionStatus !== "authenticated" && (
         <div
         className="flex font-poppins items-center justify-center dark:bg-gray-900 min-w-screen min-h-screen py-28"
       >
@@ -84,23 +95,12 @@ const page = () => {
               </h1>
               <form onSubmit={handleSubmit} method="post" className="space-y-4">
                 <div>
-                  <label htmlFor="text" className="mb-2 dark:text-gray-400 text-lg">First Name</label>
+                  <label htmlFor="text" className="mb-2 dark:text-gray-400 text-lg">Full Name</label>
                   <input
-                    id="first name"
+                    id="Full Name"
                     className="border dark:bg-neon dark:text-black dark:border-gray-700 p-3 shadow-md placeholder:text-base border-gray-300 rounded-lg w-full focus:scale-105 ease-in-out duration-300 dark:placeholder:text-gray-700"
                     type="text"
-                    placeholder="Enter your first name"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="text" className="mb-2 dark:text-gray-400 text-lg">Last Name</label>
-                  <input
-                    id="last name"
-                    className="border dark:bg-neon dark:text-black dark:border-gray-700 p-3 shadow-md placeholder:text-base border-gray-300 rounded-lg w-full focus:scale-105 ease-in-out duration-300 dark:placeholder:text-gray-700"
-                    type="text"
-                    placeholder="Enter your last name"
+                    placeholder="Enter your full name"
                     required
                   />
                 </div>
@@ -252,7 +252,6 @@ const page = () => {
         </div>
       </div>
     )
-)
 }
 
 export default page
