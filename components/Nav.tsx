@@ -44,7 +44,7 @@ const Navbar = () => {
         </button>
 
          {/* Sign Up Button */}
-         <a href="/signup" className="bg-neon text-white  dark:text-black px-4 py-2 rounded-lg hover:text-white hover:shadow-md hover:shadow-charcoal dark:hover:shadow-neon dark:bg-text-black transition-colors duration-300 md:hidden">
+         <a href="/register" className="bg-neon text-white  dark:text-black px-4 py-2 rounded-lg hover:text-white hover:shadow-md hover:shadow-charcoal dark:hover:shadow-neon dark:bg-text-black transition-colors duration-300 md:hidden">
             Get Started ➡
           </a>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
             )}
           </button>
           {/* Sign Up Button */}
-          <a href="/signup" className="bg-neon text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition-colors duration-300">
+          <a href="/register" className="bg-neon text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition-colors duration-300">
             Sign Up
           </a>
         </div>
